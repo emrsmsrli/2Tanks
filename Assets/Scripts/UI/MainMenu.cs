@@ -29,30 +29,14 @@ public class MainMenu : MonoBehaviour {
     void Awake() {
         colors = new Color[2];
         calculateColors();
+        assignColors();
         colorbuttonselected = false;
-
-
-        MeshRenderer[] t1 = tank1.GetComponentsInChildren<MeshRenderer>();
-        MeshRenderer[] t2 = tank2.GetComponentsInChildren<MeshRenderer>();
-        foreach(MeshRenderer mr in t1) {
-            mr.material.color = colors[0];
-        }
-        foreach(MeshRenderer mr in t2) {
-            mr.material.color = colors[1];
-        }
     }
 
     void Update() {
         if(colorbuttonselected) {
             calculateColors();
-            MeshRenderer[] t1 = tank1.GetComponentsInChildren<MeshRenderer>();
-            MeshRenderer[] t2 = tank2.GetComponentsInChildren<MeshRenderer>();
-            foreach(MeshRenderer mr in t1) {
-                mr.material.color = colors[0];
-            }
-            foreach(MeshRenderer mr in t2) {
-                mr.material.color = colors[1];
-            }
+            assignColors();
         }
     }
 
@@ -85,34 +69,41 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void onOptionsClick() {
-
         colorbuttonselected = true;
-
-        Button[] buttons = mainCanvas.GetComponentsInChildren<Button>();
-        foreach(Button b in buttons)
-            b.interactable = false;
-        buttons = colorCanvas.GetComponentsInChildren<Button>();
-        foreach(Button b in buttons)
-            b.interactable = true;
-
+        buttonInteractivity(false);
         StartCoroutine(rotator(-1));
     }
 
     public void onOptionsOKClick() {
+        buttonInteractivity(true);
+        StartCoroutine(rotator(1));
+    }
+
+    private void buttonInteractivity(bool interactive) {
 
         Button[] buttons = mainCanvas.GetComponentsInChildren<Button>();
         foreach(Button b in buttons)
-            b.interactable = true;
+            b.interactable = interactive;
         buttons = colorCanvas.GetComponentsInChildren<Button>();
         foreach(Button b in buttons)
-            b.interactable = false;
+            b.interactable = !interactive;
 
-        StartCoroutine(rotator(1));
     }
 
     private void calculateColors() {
         colors[0] = new Color(red1.value / 255, green1.value / 255, blue1.value / 255);
         colors[1] = new Color(red2.value / 255, green2.value / 255, blue2.value / 255);
+    }
+
+    private void assignColors() {
+        MeshRenderer[] t1 = tank1.GetComponentsInChildren<MeshRenderer>();
+        MeshRenderer[] t2 = tank2.GetComponentsInChildren<MeshRenderer>();
+        foreach(MeshRenderer mr in t1) {
+            mr.material.color = colors[0];
+        }
+        foreach(MeshRenderer mr in t2) {
+            mr.material.color = colors[1];
+        }
     }
 
     IEnumerator rotator(int dir) {
