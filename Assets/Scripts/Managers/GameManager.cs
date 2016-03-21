@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour {
     public GameObject m_TankPrefab;
     public TankManager[] m_Tanks;
     public Transform[] spawnPoints;
-    public Camera c;
-    public GameObject visMarkPrefab;
+    public Camera mainCamera;
+    public GameObject pointerPrefab;
     [HideInInspector] public static int m_NumRoundsToWin;
     [HideInInspector] public static Color[] colors;
 
@@ -126,12 +126,11 @@ public class GameManager : MonoBehaviour {
         while(true) {
             foreach(TankManager tank in m_Tanks) {
                 RaycastHit hit;
-                Physics.Raycast(c.transform.position, tank.m_Instance.transform.position - c.transform.position, out hit);
-                //Debug.DrawRay(c.transform.position, tank.m_Instance.transform.position - c.transform.position);
+                Physics.Raycast(mainCamera.transform.position, tank.m_Instance.transform.position - mainCamera.transform.position, out hit);
                 if(!hit.collider.gameObject.CompareTag("Player")) {
                     if(tank.isVisible) {
                         tank.isVisible = false;
-                        GameObject o = Instantiate(visMarkPrefab, tank.m_Instance.transform.position + new Vector3(0, 4.5f, 0), Quaternion.identity) as GameObject;
+                        GameObject o = Instantiate(pointerPrefab, tank.m_Instance.transform.position + new Vector3(0, 4.5f, 0), Quaternion.identity) as GameObject;
                         foreach(MeshRenderer mr in o.GetComponentsInChildren<MeshRenderer>())
                             mr.material.color = tank.m_PlayerColor;
                         o.transform.SetParent(tank.m_Instance.transform, true);
