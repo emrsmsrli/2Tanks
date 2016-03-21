@@ -4,10 +4,10 @@ using UnityEngine;
 using System.Collections;
 
 public class Pointer : MonoBehaviour {
-#if _DEBUG
     public void Start() {
-        StartCoroutine(moveY());
+        print("started");
     }
+#if _DEBUG
     IEnumerator moveY() {
         Vector3 target1 = transform.position + new Vector3(0, 2, 0);
         Vector3 target2 = transform.position + new Vector3(0, -2, 0);
