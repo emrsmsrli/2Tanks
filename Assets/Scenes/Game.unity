@@ -765,6 +765,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cd1bdb2203012a40ab12a0d2fd7aa88, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &807947882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 807947883}
+  m_Layer: 0
+  m_Name: Rayer1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &807947883
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 807947882}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8, y: 0, z: -65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1897184667}
+  m_RootOrder: 1
 --- !u!1 &870105490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1272,6 @@ MonoBehaviour:
     m_Instance: {fileID: 0}
     m_Wins: 0
     isVisible: 0
-    pointer: {fileID: 0}
   - m_PlayerColor: {r: 0.8980392, g: 0.18039216, b: 0.15686275, a: 0}
     m_SpawnPoint: {fileID: 0}
     m_PlayerNumber: 0
@@ -1253,7 +1279,6 @@ MonoBehaviour:
     m_Instance: {fileID: 0}
     m_Wins: 0
     isVisible: 0
-    pointer: {fileID: 0}
   spawnPoints:
   - {fileID: 198160658}
   - {fileID: 1425325347}
@@ -1262,7 +1287,7 @@ MonoBehaviour:
   - {fileID: 231055728}
   - {fileID: 1979701002}
   - {fileID: 680449329}
-  c: {fileID: 476177896}
+  mainCamera: {fileID: 476177896}
   pointerPrefab: {fileID: 137384, guid: 945e88b284a9d2e4cbb3fe565756fb51, type: 2}
 --- !u!4 &1320668920
 Transform:
@@ -1391,6 +1416,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 363730284}
   m_RootOrder: 1
+--- !u!1 &1579404597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1579404598}
+  m_Layer: 0
+  m_Name: Rayer2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1579404598
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1579404597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8, y: 0, z: -65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1897184667}
+  m_RootOrder: 2
 --- !u!4 &1593892745 stripped
 Transform:
   m_PrefabParentObject: {fileID: 406760, guid: 71bb4a7559db3ec4bb59a299b726c0ad, type: 2}
@@ -1464,6 +1516,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 476177897}
+  - {fileID: 807947883}
+  - {fileID: 1579404598}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &1979701001
