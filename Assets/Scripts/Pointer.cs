@@ -8,11 +8,6 @@ public class Pointer : MonoBehaviour {
     public void Start() {
         StartCoroutine(moveY());
     }
-#endif
-    void Update() {
-        transform.Rotate(0, 5, 0);
-    }
-#if _DEBUG
     IEnumerator moveY() {
         Vector3 target1 = transform.position + new Vector3(0, 2, 0);
         Vector3 target2 = transform.position + new Vector3(0, -2, 0);
@@ -31,4 +26,9 @@ public class Pointer : MonoBehaviour {
         }
     }
 #endif
+
+    void Update() {
+        transform.Rotate(0, 5, 0);
+    }
+
 }
