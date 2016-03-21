@@ -107,11 +107,10 @@ public class MainMenu : MonoBehaviour {
     }
 
     private IEnumerator rotator(int dir) {
-        //alternetive angle = 45, lerp ratio = 0.5f;
-        float angle = 30; 
+        float angle = 45;
         for(int i = 0; i < 100; ++i) {
             canvasManager.transform.Rotate(0, dir * angle, 0);
-            angle = Mathf.LerpAngle(angle, 0, .333333333333333f);
+            angle = Mathf.LerpAngle(angle, 0, .5f);
             yield return new WaitForSeconds(0.03f);
         }
     }
