@@ -106,7 +106,7 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    IEnumerator rotator(int dir) {
+    private IEnumerator rotator(int dir) {
         float angle = 45;
         for(int i = 0; i < 100; ++i) {
             canvasManager.transform.Rotate(0, dir * angle, 0);
