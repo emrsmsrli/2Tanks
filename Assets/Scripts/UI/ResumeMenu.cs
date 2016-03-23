@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 using System.Collections;
 
 public class ResumeMenu : MonoBehaviour {
@@ -20,6 +19,7 @@ public class ResumeMenu : MonoBehaviour {
     private float dampTime = 0.2f;
     private bool menuOn = false;
     private bool optionsMenuOn = false;
+    private bool onAnimation = false;
 
     void Update() {
 
@@ -45,19 +45,21 @@ public class ResumeMenu : MonoBehaviour {
     }
 
     public void onClickOptions() {
-        disableButtons();
         optionsMenuOn = true;
-        StartCoroutine(moveUI(-1));
+        disableButtons();
+        if(!onAnimation)
+            StartCoroutine(moveUI(-1));
     }
 
     public void onMusicSliderValueChanged() {
-        music.volume = optionsMenu.GetComponent<Slider>().value;
+        music.volume = optionsMenu.GetComponentInChildren<Slider>().value;
     }
 
     public void onClickOptionsOK() {
-        disableButtons();
         optionsMenuOn = false;
-        StartCoroutine(moveUI(1));
+        disableButtons();
+        if(!onAnimation)
+            StartCoroutine(moveUI(1));
     }
 
     public void onClickQuit() {
@@ -65,29 +67,35 @@ public class ResumeMenu : MonoBehaviour {
     }
 
     private void disableButtons() {
-        if(!optionsMenuOn) {
+        if(optionsMenuOn) {
             resumeBut.interactable = false;
             optionsBut.interactable = false;
             quitBut.interactable = false;
 
-            //optionsOKBut.interactable = true;
+            optionsOKBut.interactable = true;
         } else {
             resumeBut.interactable = true;
             optionsBut.interactable = true;
             quitBut.interactable = true;
 
-            //optionsOKBut.interactable = false;
+            optionsOKBut.interactable = false;
         }
     }
 
     private IEnumerator moveUI(int direction) {
+        onAnimation = true;
         StartCoroutine(mover(resumeBut.gameObject, direction));
         yield return new WaitForSeconds(.05f);
+
         StartCoroutine(mover(optionsBut.gameObject, direction));
         StartCoroutine(mover(optionsMenu, direction));
         yield return new WaitForSeconds(.05f);
+
         StartCoroutine(mover(quitBut.gameObject, direction));
-        yield return new WaitForSeconds(.05f);
+        yield return new WaitForSeconds(.5f);
+
+        StopAllCoroutines();
+        onAnimation = false;
     }
 
     private IEnumerator mover(GameObject obj, int direction) {
