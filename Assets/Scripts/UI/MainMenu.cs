@@ -96,13 +96,14 @@ public class MainMenu : MonoBehaviour {
     }
 
     private void assignColors() {
-        MeshRenderer[] t1 = tank1.GetComponentsInChildren<MeshRenderer>();
-        MeshRenderer[] t2 = tank2.GetComponentsInChildren<MeshRenderer>();
-        foreach(MeshRenderer mr in t1) {
-            mr.material.color = colors[0];
-        }
-        foreach(MeshRenderer mr in t2) {
-            mr.material.color = colors[1];
+        assignTankColor(tank1, 0);
+        assignTankColor(tank2, 1);
+    }
+
+    private void assignTankColor(GameObject tank, int index) {
+        MeshRenderer[] mrs = tank.GetComponentsInChildren<MeshRenderer>();
+        foreach(MeshRenderer mr in mrs) {
+            mr.material.color = colors[index];
         }
     }
 
