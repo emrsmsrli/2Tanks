@@ -1774,6 +1774,7 @@ MonoBehaviour:
   - {fileID: 680449329}
   mainCamera: {fileID: 476177896}
   pointerPrefab: {fileID: 137384, guid: 945e88b284a9d2e4cbb3fe565756fb51, type: 2}
+  powerUpPrefab: {fileID: 155806, guid: f0162e4ee0dfa5941a47896dd5065430, type: 2}
 --- !u!4 &1320668920
 Transform:
   m_ObjectHideFlags: 0

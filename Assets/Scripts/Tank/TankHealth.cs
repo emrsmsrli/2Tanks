@@ -41,11 +41,23 @@ public class TankHealth : MonoBehaviour
             OnDeath();
     }
 
+    private void GainHealth(float amount) {
+        m_CurrentHealth += amount;
+
+        if(m_CurrentHealth > m_StartingHealth)
+            m_CurrentHealth = m_StartingHealth;
+    }
+
 
     private void SetHealthUI()
     {
         m_Slider.value = m_CurrentHealth;
         m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_CurrentHealth / m_StartingHealth);
+    }
+
+    public void powerUp() {
+        GainHealth(20);
+        SetHealthUI();
     }
 
 

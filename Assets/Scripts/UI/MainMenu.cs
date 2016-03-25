@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject tank1;
     public GameObject tank2;
 
-    private int numberOfRounds;
+    //private int numberOfRounds;
     private Color[] colors;
     private bool colorbuttonselected;
 

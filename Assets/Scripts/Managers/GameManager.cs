@@ -16,8 +16,13 @@ public class GameManager : MonoBehaviour {
     public Transform[] spawnPoints;
     public Camera mainCamera;
     public GameObject pointerPrefab;
-    [HideInInspector] public static int m_NumRoundsToWin;
-    [HideInInspector] public static Color[] colors;
+    public GameObject powerUpPrefab;
+    [HideInInspector]
+    public static int m_NumRoundsToWin;
+    [HideInInspector]
+    public static Color[] colors;
+    [HideInInspector]
+    public static bool powerUpped = false;
 
     private int m_RoundNumber;
     private WaitForSeconds m_StartWait;
@@ -99,10 +104,13 @@ public class GameManager : MonoBehaviour {
         m_MessageText.text = string.Empty;
 
         StartCoroutine("visibilityCheck");
+        StartCoroutine("spawnPowerUp");
 
-        while(!OneTankLeft())
+        while(!OneTankLeft()) {
             yield return null;
+        }
 
+        StopCoroutine("spawnPowerUp");
         StopCoroutine("visibilityCheck");
     }
 
@@ -147,6 +155,14 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private IEnumerator spawnPowerUp() {
+        while(true) {
+            if(!powerUpped && Random.Range(0, 10) < 8) {
+                yield return new WaitForSeconds(1f);
+                Instantiate(powerUpPrefab, transform.position + new Vector3(Random.Range(-43f, 43f), 1.2f, Random.Range(-43f, 43f)), Quaternion.Euler(45f, 0, 45f));
+            }
+        }
+    }
 
     private bool OneTankLeft() {
         int numTanksLeft = 0;
