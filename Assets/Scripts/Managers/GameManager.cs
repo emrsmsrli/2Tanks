@@ -104,13 +104,15 @@ public class GameManager : MonoBehaviour {
         m_MessageText.text = string.Empty;
 
         StartCoroutine("visibilityCheck");
+#if _DEBUG
         StartCoroutine("spawnPowerUp");
-
+#endif
         while(!OneTankLeft()) {
             yield return null;
         }
-
+#if _DEBUG
         StopCoroutine("spawnPowerUp");
+#endif
         StopCoroutine("visibilityCheck");
     }
 
