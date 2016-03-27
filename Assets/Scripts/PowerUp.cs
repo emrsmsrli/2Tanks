@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour {
 
-    private float killTime = 5f;
-
+    private float killTime = 20f;
+    
     public void Awake() {
         if(isOverlapping())
             kill();
@@ -16,7 +16,7 @@ public class PowerUp : MonoBehaviour {
     }
 
     public void Update() {
-        transform.Rotate(0, 2, 2);
+        transform.Rotate(2, 2, 2);
     }
 
     public void OnTriggerEnter(Collider other) {
@@ -28,7 +28,6 @@ public class PowerUp : MonoBehaviour {
         Collider[] colliders = Physics.OverlapSphere(transform.position, .7f);
 
         foreach(Collider c in colliders) {
-            print(c.GetType());
             if(c.GetType() != typeof(MeshCollider))
                 if(!c.gameObject.CompareTag("PowerUp"))
                     return true;
