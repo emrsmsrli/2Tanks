@@ -159,8 +159,8 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator spawnPowerUp() {
         while(true) {
-            if(!powerUpped && Random.Range(0, 10) < 8) {
-                yield return new WaitForSeconds(1f);
+            if(!powerUpped) {
+                yield return new WaitForSeconds(Random.Range(10f, 20f));
                 Instantiate(powerUpPrefab, transform.position + new Vector3(Random.Range(-43f, 43f), 1.2f, Random.Range(-43f, 43f)), Quaternion.Euler(45f, 0, 45f));
             }
         }
